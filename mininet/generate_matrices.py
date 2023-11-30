@@ -12,13 +12,19 @@ from tmgen.models import modulated_gravity_tm
 import matplotlib.pyplot as plt
 
 
-def set_seed():
+def set_seed(args):
     numpy.random.seed(args.seed)
 
 
-def generate_tm():
-    tm = modulated_gravity_tm(args.num_nodes, args.num_tms, args.mean_traffic, args.pm_ratio, args.t_ratio,
-                              args.diurnal_freq, args.spatial_variance, args.temporal_variance)
+def generate_tm(args):
+    tm = modulated_gravity_tm(args.num_nodes,
+                              args.num_tms,
+                              args.mean_traffic,
+                              pm_ratio=args.pm_ratio,
+                              t_ratio=args.t_ratio,
+                              diurnal_freq=args.diurnal_freq,
+                              spatial_variance=args.spatial_variance,
+                              temporal_variance=args.temporal_variance)
 
     mean_time_tm = []
     for t in range(args.num_tms):
@@ -81,10 +87,10 @@ if __name__ == '__main__':
                         help="Variance on the volume of traffic between origin-destination pairs")
     parser.add_argument("--temporal_variance", default=0.03, help="Variance on the volume in time")
     parser.add_argument("--communicate_ratio", default=0.7, help="percentage of nodes to communicate")
-    args = parser.parse_args()
+    _args = parser.parse_args()
 
-    # set_seed()
-    # generate_tm()
+    set_seed(_args)
+    generate_tm(_args)
 
-    mean_time_tm = np.load(r"D:\WorkSpace\Hello_Myself\Hello_Multicast\RLMulticastProject\mininet\tm_statistic\tm_statistic\mean_time_tm.npy")
-    plot_tm_mean(mean_time_tm)
+    # mean_time_tm = np.load(r"/home/fwy/Desktop/refer/DRL-M4MR/mininet\tm_statistic\tm_statistic\mean_time_tm.npy")
+    # plot_tm_mean(mean_time_tm)
