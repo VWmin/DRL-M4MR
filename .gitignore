@@ -2,3 +2,14 @@
 mininet/figure
 mininet/iperfTM
 mininet/tm_statistic
+mininet/images
+mininet/finish_time.json
+runs/
+ryu/pickle/*
+ryu/weight
+data/
+images/
+RL/data
+RL/images
+RL/Logs
+RL/saved_agents

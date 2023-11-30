@@ -96,38 +96,38 @@ def print_pretty_table(param, titles, widths, table_name='zzlong', logger=None):
     f(cut_line + '\n')
 
 
-# def print_pretty_list(param, num, width=10, table_name='zzlong', logger=None):
-#     """
-#         按每行固定个，打印列表中的值
-#     :param param: 要打印的列表 list
-#     :param num: 每行多少个值
-#     :param width: 每个值的宽度
-#     :param table_name: 表名字
-#     :param logger: 用什么打印 print / logger.info
-#     :return: None
-#     """
-#     f = logger if logger else print
-#     all_widths = num * width
-#     cut_line = "=" * all_widths
-#     # 表名字
-#     w = all_widths - len(table_name)
-#     if w > 1:
-#         f(cut_line[:w // 2] + table_name + cut_line[w // 2: w])
-#     else:
-#         f("=" + table_name + "=")
-#
-#     # 直接打印
-#     temp = 0
-#     for i in range(len(param) // num):
-#         f(param[temp: temp + num])
-#         temp += num
-#     if param[temp:]:
-#         f(param[temp:])
-#     else:
-#         pass
-#
-#     # 打印分割线
-#     f(cut_line + '\n')
+def print_pretty_list(param, num, width=10, table_name='zzlong', logger=None):
+    """
+        按每行固定个，打印列表中的值
+    :param param: 要打印的列表 list
+    :param num: 每行多少个值
+    :param width: 每个值的宽度
+    :param table_name: 表名字
+    :param logger: 用什么打印 print / logger.info
+    :return: None
+    """
+    f = logger if logger else print
+    all_widths = num * width
+    cut_line = "=" * all_widths
+    # 表名字
+    w = all_widths - len(table_name)
+    if w > 1:
+        f(cut_line[:w // 2] + table_name + cut_line[w // 2: w])
+    else:
+        f("=" + table_name + "=")
+
+    # 直接打印
+    temp = 0
+    for i in range(len(param) // num):
+        f(param[temp: temp + num])
+        temp += num
+    if param[temp:]:
+        f(param[temp:])
+    else:
+        pass
+
+    # 打印分割线
+    f(cut_line + '\n')
 
 
 if __name__ == '__main__':

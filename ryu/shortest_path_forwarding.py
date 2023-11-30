@@ -27,7 +27,7 @@ import setting
 import network_structure
 import network_monitor
 import network_delay
-from plot_graphs import plot_x_y
+#from plot_graphs import plot_x_y
 
 from RL.train import Train
 from RL.config import Config
@@ -44,11 +44,11 @@ from RL.net import MyMulticastNet3
 class ShortestPathForwarding(app_manager.RyuApp):
     OFP_VERSION = [ofproto_v1_3.OFP_VERSION]
 
-    # _CONTEXTS = {
-    #     'discovery': network_structure.NetworkStructure,
-    #     'monitor': network_monitor.NetworkMonitor,
-    #     'detector': network_delay.NetworkDelayDetector
-    # }
+    _CONTEXTS = {
+        'discovery': network_structure.NetworkStructure,
+        'monitor': network_monitor.NetworkMonitor,
+        'detector': network_delay.NetworkDelayDetector
+    }
 
     def __init__(self, *args, **kwargs):
         super(ShortestPathForwarding, self).__init__(*args, **kwargs)
@@ -70,15 +70,15 @@ class ShortestPathForwarding(app_manager.RyuApp):
         self.drl_multicast = Train(Config, MulticastEnv, DQN, MyMulticastNet3,
                                    name=f'{time.strftime("%Y%m%d%H%M%S", time.localtime())}', mode='eval')
 
-        self.drl_multicast.predict(r".\RL\saved_agents\init_pkl.pkl")
-        # self.arp_table = {}
-        # self.sw = {}
-        # self.mac_to_port = {}
-        # self.graph = self.discovery.graph
-        # self.datapaths_table = self.monitor.datapaths_table  # {dpid: datapath}
-        # self.access_table = self.discovery.access_table  # {(dpid, in_port): (src_ip, src_mac)}
-        # self.link_port_table = self.discovery.link_port_table  # {(src.dpid, dst.dpid): (src.port_no, dst.port_no)}
-        # self.switch_all_ports_table = self.discovery.switch_all_ports_table  # {dpid: {port_no, ...}}
+        # self.drl_multicast.predict(r".\RL\saved_agents\init_pkl.pkl")
+        self.arp_table = {}
+        self.sw = {}
+        self.mac_to_port = {}
+        self.graph = self.discovery.graph
+        self.datapaths_table = self.monitor.datapaths_table  # {dpid: datapath}
+        self.access_table = self.discovery.access_table  # {(dpid, in_port): (src_ip, src_mac)}
+        self.link_port_table = self.discovery.link_port_table  # {(src.dpid, dst.dpid): (src.port_no, dst.port_no)}
+        self.switch_all_ports_table = self.discovery.switch_all_ports_table  # {dpid: {port_no, ...}}
         self.my_logger = self.logger.info if setting.LOGGER else print
 
         self.plot_info = {}

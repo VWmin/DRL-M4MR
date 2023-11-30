@@ -33,7 +33,7 @@ class NetworkDelayDetector(app_manager.RyuApp):
         self.network_monitor = lookup_service_brick('monitor')
         self.switch_module = lookup_service_brick('switches')
 
-        self.switch_module = kwargs['switches']
+        # self.switch_module = kwargs['switches']
         # self.network_structure = kwargs['discovery']
         # self.network_monitor = kwargs['monitor']
 

@@ -169,7 +169,7 @@ class Train:
             :param step: 间隔
         """
         a = os.listdir(pkl_dir)
-        assert n < len(a), "n should small than len(a)"
+        assert s < len(a), "n should small than len(a)"
         # print([x.split('-')[0] for x in a])
         b = sorted(a, key=lambda x: int(x.split('-')[0]))
         for p in b[s:n:step]:
